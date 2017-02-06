@@ -1,0 +1,276 @@
+\documentclass[nobib]{tufte-handout}
+\usepackage[utf8]{inputenc}
+
+%\geometry{showframe} % display margins for debugging page layout
+
+\usepackage{graphicx} % allow embedded images
+  \setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+  \graphicspath{{graphics/}} % set of paths to search for images
+\usepackage{latexsym,amsmath,amssymb}  % extended mathematics
+\usepackage{booktabs} % book-quality tables
+\usepackage{units}    % non-stacked fractions and better unit spacing
+\usepackage{multicol} % multiple column layout facilities
+\usepackage{lipsum}   % filler text
+\usepackage{fancyvrb} % extended verbatim environments
+  \fvset{fontsize=\normalsize}% default font size for fancy-verbatim environments
+
+\usepackage{marginfix}
+
+
+\usepackage{hyphenat}
+\usepackage[backend=biber,
+            hyperref=true,
+            autolang=hyphen,
+            style=authortitle,
+            citestyle=verbose,
+            bibencoding=UTF-8,
+            giveninits=true,
+            maxbibnames=1000,
+            terseinits=true,
+            block=none,
+            sorting=nyt,
+            autocite=footnote
+]{biblatex}
+\addbibresource{refs.bib}
+%\renewcommand{\cite}[2][0pt]{\sidenote[][#1]{\fullcite{#2}}}
+
+% remove "in: " from articles
+\renewbibmacro{in:}{%
+  \ifentrytype{article}{}{%
+  \printtext{\bibstring{in}\intitlepunct}}
+}
+
+%better printing of numbers
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage{textcomp}
+
+\usepackage{ccicons}
+
+% Standardize command font styles and environments
+\newcommand{\doccmd}[1]{\texttt{\textbackslash#1}}% command name -- adds backslash automatically
+\newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}% optional command argument
+\newcommand{\docarg}[1]{\textrm{\textit{#1}}}% (required) command argument
+\newcommand{\docenv}[1]{\textsf{#1}}% environment name
+\newcommand{\docpkg}[1]{\texttt{#1}}% package name
+\newcommand{\doccls}[1]{\texttt{#1}}% document class name
+\newcommand{\docclsopt}[1]{\texttt{#1}}% document class option name
+\newenvironment{docspec}{\begin{quote}\noindent}{\end{quote}}% command specification environment
+
+
+\title{Open science and the future university researcher\thanks{This
+work is licensed under a
+\href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution
+4.0 International License} \ccby}}
+
+\author[Kyle E.~Niemeyer]{Kyle E.~Niemeyer\thanks{
+School of Mechanical, Industrial, \& Manufacturing Engineering\\
+\noindent Oregon State University\\
+\noindent Email: \href{mailto:kyle.niemeyer@oregonstate.edu}{kyle.niemeyer@oregonstate.edu}
+}}
+
+\date{5 February 2017} % without \date command, current date is supplied
+
+
+\begin{document}
+
+\maketitle% this prints the handout title, author, and date
+
+\begin{abstract}
+\noindent
+This white paper was written as a contribution to the ``Imagining Tomorrow's University:
+Rethinking scholarship, education, and institutions for an open, networked era''
+workshop, a joint NIH\slash NSF-funded event held 8--9 March 2017 in Rosemont, IL.
+In this paper, I present an overview of what I consider open science,
+why it is important, and how it plays a role in my research agenda.
+I also discuss challenges faced in pursuing research openness.
+This views are based on my experiences and plans. As such, all views expressed
+here are personal, and do not necessarily represent those
+of my institution or colleagues.
+\end{abstract}
+
+\section{Introduction to and importance of open science}
+\label{sec:intro}
+
+To me, working openly should be the default mode of science---after all, how can
+we advance knowledge ``by standing on the shoulders of giants''\footnote{``If I
+have seen further, it is by standing on the shoulders of giants.'' Isaac
+Newton, 1676, although similar statements can be found as far back as the 12th
+century.} if we cannot access or see those shoulders?
+
+This document operates on the following definition of open science:
+\begin{quote}
+Open science, or more broadly open research, describes the activity of performing
+scientific research in a manner that makes products and findings accessible to
+anyone. This includes sharing data openly (open data), publicly releasing the
+source code for research software (open-source software), and making the written
+products of research openly accessible (open access).
+\end{quote}
+
+Transforming research communities from traditional, closed environments to open
+ones is important for a number of reasons, including (but not necessarily limited
+to) the following six. McKiernan et al.\autocite{McKiernan:2016iz} discuss these
+and additional benefits for researchers working openly. Tennant et al.\autocite{Tennant:2016bi}
+review in detail the benefits of open-access publications.
+
+\paragraph{Accessibility:}
+Openness in research ensures that research products,
+particularly written output, remain accessible to the public. This includes the
+research community, funders, policy makers, and the general public. Accessibility
+of research products is particularly important for publicly funded
+research---since the public paid for the research, the public should have access
+and be able to benefit from it.
+(This does not prevent innovators or other parties from developing commercial
+intellectual property based on the findings, but ensures that the original
+discovery, when funded by the public, remains accessible to all.)
+
+\paragraph{Reproducibility:}
+Releasing products of research, including software and data, helps enable
+reproducibility. This is particularly true for computational science, where a
+written description of methods can never describe an approach as completely as
+source code. In general, access to research software used to perform a
+computational study, or the data from an experimental study, should enable
+others to reproduce the findings of the original researchers.
+However, open science is a necessary but not sufficient aspect of reproducibility,
+as it can be challenging to reproduce\slash replicate results even with
+available research software and data\autocite{Mesnard:2016,Barba:2016ky}.
+
+\paragraph{Impact:}
+As a selfish motivation, performing research openly helps increase the impact of work.
+Studies have shown that open-access papers are cited more in most research fields.
+In engineering, open-access papers are cited around 1.5 times more often than
+non-open-access papers. Similarly, papers with associated
+open data were cited 9--50\% more than those
+without\autocite{Piwowar:2013cc,McKiernan:2016iz}.
+Vandewalle\autocite{Vandewalle:2012cl} showed papers in the image-processing
+field receive up to three times the number of citations when source code is
+made available.
+
+\paragraph{Establish priority:}
+Some researchers hesitate to embrace open science out of a fear of being ``scooped,''
+where competitors will use some findings, software tools, or data made available
+and then publish first. However, contrary to this belief, practicing open science
+can actually prevent being scooped: releasing preprints can establish priority of
+discoveries or techniques prior to the publication of a traditional peer-reviewed
+journal article\autocite{Berg:2016gl,Strasser:2016fr}.
+
+The peer-review and editorial process of such papers can take many months or years,
+but journal articles are still necessary for research findings to be considered valid
+(and for researchers to receive credit). Publishing a preprint of an article
+publicly time-stamps the work, even as it undergoes peer review and possible
+revision.
+
+\paragraph{Encourages trust:}
+Embracing openness in scientific research can help encourage other researchers
+to trust published results, by giving the ability to inspect data or software.
+Soergel estimated that 5--100\% of computational results given by software
+may be incorrect or inaccurate\autocite{Soergel:2015ef}. While simply releasing
+source code openly will not solve this problem, this is a necessary step towards
+verification and reproducibility.
+
+\paragraph{It's nice:}
+In addition to the above benefits, sharing products of research openly is kind
+to colleagues and the greater research community, as it prevents people from
+wasting time repeating work unnecessarily.
+Like many graduate students, I began working on my dissertation research by
+attempting to reimplement another group's method and reproduce some of the
+results in a paper. However, this group did not share any source code openly.
+As a result, I wasted significant time dealing with minor implementation details
+or inputs not discussed in their papers. This could have been avoided by sharing
+the source code, which would have allowed me to more quickly move on to new work.
+Graduate students and other researchers constantly face similar challenges that
+could be avoided by greater openness in research.
+
+
+
+\section{Openness increases societal impact of research}
+\label{sec:impact}
+
+Many published journal articles go unread, even in their topical domains.
+One study of citation rates found that 27\% of papers published in the natural
+sciences and engineering go uncited\autocite{Lariviere:2009}\footnote{Of course,
+papers that are read may not be cited, and papers that are cited may not actually
+be read.}
+Those who do read most papers likely come from research institutions similar to
+those of the authors, even if the findings could be impactful beyond these
+confines, for example leading to policy changes or technological solutions
+for the developing world. In part this is due to the challenging technical content,
+jargon, and niche topics---but it is also due to the lack of access to the journals
+where most research findings reside. (Making the content of these papers actually
+understandable or digestible by most is another challenge.)
+
+Considering the high and ever-increasing cost of scholarly journal subscriptions,
+research results should not be limited to those with the means to purchase access.
+By publishing articles in open-access journals or self-archiving (i.e., green open
+access), researchers can ensure access for all more members of society, including
+policymakers, funders, members of the media, entrepreneurs, and the general
+public---or scientists and engineers in the Global South.
+
+Furthermore, being more open with all outputs of research (e.g., papers, software,
+data) could help improve the general public's perception and trust in
+scientific research. Simply making research products available will not solve
+all of these problems---for one, it will not sway those who strongly believe
+ideas contrary to fact. However, ensuring everyone has access to the data researchers
+generate and analyze, and the software tools on which we rely, could eliminate one
+major barrier to trust in our findings\autocite{Grand:2012}.
+
+\section{Open science and my research agenda}
+\label{sec:agenda}
+
+Over the past year and a half (September 2015--February 2017), as I initiated
+and built my research group, I worked to crystallize my vision and plan for
+performing research openly. The guiding principles I formed were heavily
+inspired by the Reproducibility PI Manifesto of Lorena Barba\autocite{Barba:2012pi},
+the Peer Reviewers' Openness Initiative\autocite{Morey150547}, and others.
+However, in addition to these exemplars, my goals are also motivated by the desire
+to work more openly than the norm in my field.
+
+My field, which includes computational modeling of combustion and fluid dynamics,
+chemical kinetics, and associated numerical methods, lacks reputable open-access
+journals. As a graduate student, I began submitting my preprints of my publications
+to the arXiv\footnote{\url{https://arxiv.org}}, and later archiving my
+(otherwise non-accessible) conference papers on
+Figshare\footnote{\url{https://figshare.com}}.
+
+Since then, I have adopted the following policy for my group's research:
+\begin{itemize}
+    \item All written research products are made openly accessible, either through
+    green or gold open-access avenues. Since my field generally lacks recognized,
+    fully open-access journals, this objective is typically met by submitting
+    preprints to services such as arXiv, engrXiv, or PeerJ Preprints, depending
+    on the paper's topic. Conference papers, when not submitted to an open venue,
+    are also made openly available through, e.g., Figshare. Where possible, all
+    preprints will be released under the CC-BY license.
+    (I choose, in general, to not follow the hybrid gold open-access model by
+    paying a non-fully open journal.)
+
+    \item All new research software developed by my group will be done so openly
+    (e.g., on GitHub) and released publicly under a permissive license such as
+    the BSD 3-clause license. The Git version-control system will be used to
+    track the history of software projects, and releases associated with
+    publications or data will be archived (with DOIs) using
+    Zenodo\footnote{\url{https://zenodo.org}}.
+    In addition, we will make all efforts to describe as many implementation
+    details as necessary to reproduce our work.
+
+    \item All data generated through research, when serving as the basis for
+    a publication, will be archived publicly and cited appropriately in our
+    work. Figures and plotting scripts will be shared via the CC-BY license
+    and cited in our papers.
+\end{itemize}
+This policy will be implemented in part by incorporating its content into
+funding proposals, for example in Data Management Plans.
+
+In addition to these standards
+
+
+\section{Institutional challenges to open science}
+
+
+%\bibliography{refs}
+%\bibliographystyle{plainnat}
+\printbibliography
+
+
+\end{document}
