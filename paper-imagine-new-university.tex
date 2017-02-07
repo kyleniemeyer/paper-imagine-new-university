@@ -16,7 +16,6 @@
 
 \usepackage{marginfix}
 
-
 \usepackage{hyphenat}
 \usepackage[backend=biber,
             hyperref=true,
@@ -47,6 +46,18 @@
 \usepackage{textcomp}
 
 \usepackage{ccicons}
+\usepackage{fontawesome}
+\usepackage{calc}
+\newlength\myheight
+\newlength\mydepth
+\settototalheight\myheight{Xygp}
+\settodepth\mydepth{Xygp}
+\setlength\fboxsep{0pt}
+\newcommand*\inlinegraphics[1]{%
+  \settototalheight\myheight{Xygp}%
+  \settodepth\mydepth{Xygp}%
+  \raisebox{-\mydepth}{\includegraphics[height=\myheight]{#1}}%
+}
 
 % Standardize command font styles and environments
 \newcommand{\doccmd}[1]{\texttt{\textbackslash#1}}% command name -- adds backslash automatically
@@ -65,9 +76,10 @@ work is licensed under a
 4.0 International License} \ccby}}
 
 \author[Kyle E.~Niemeyer]{Kyle E.~Niemeyer\thanks{
-School of Mechanical, Industrial, \& Manufacturing Engineering\\
+School of Mechanical, Industrial, \& Manufacturing Engineering,\\
 \noindent Oregon State University\\
-\noindent Email: \href{mailto:kyle.niemeyer@oregonstate.edu}{kyle.niemeyer@oregonstate.edu}
+\noindent \faEnvelopeO~\href{mailto:kyle.niemeyer@oregonstate.edu}{kyle.niemeyer@oregonstate.edu}\\
+\noindent \inlinegraphics{orcid_128x128.png}~{\scriptsize\href{https://orcid.org/0000-0003-4425-7097}{https://orcid.org/0000-0003-4425-7097}}
 }}
 
 \date{5 February 2017} % without \date command, current date is supplied
@@ -313,7 +325,8 @@ doing this, e.g., during graduate school or during postdoctoral training, they
 also may simply be unaware of how to research openly, or the resources that are
 available to do so. Furthermore, since most of their colleagues, collaborators,
 and competitors do not practice open science, no pressure comes from the
-research community to change.
+research community to change. In addition, some communities do not support or
+actively oppose activities such as submitting preprints.
 
 This lack of pressure is related to the other major issue: lack of institutional
 recognition and reward for open practices. In general, academic researchers will
